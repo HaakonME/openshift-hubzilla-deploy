@@ -23,8 +23,8 @@ echo "done creating directories"
 
 ####
 
-echo "Now chmod 777 -R sites just for good measure."
-chmod -R 777 $OPENSHIFT_DATA_DIR/sites
+echo "Now chmod 777 -R files for good measure."
+chmod -R 777 $OPENSHIFT_DATA_DIR/sites/default/files
 echo "chmod done"
 
 ####
