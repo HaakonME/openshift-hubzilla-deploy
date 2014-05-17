@@ -4,7 +4,9 @@
 # up again. This script gets executed directly, so it could be python, php,
 # ruby, etc.
 
-## Place this file in /.openshift/action_hooks/deploy (The .openshift folder will be in the root of your repo)
+## Place this file in /.openshift/action_hooks/ (The .openshift folder will be in the root of your repo)
+## The file name should be "deploy" such that you have:
+##      .openshift/action_hooks/deploy
 
 ## Drupal specific deploy script
 ## Drupal 7 or 8.
