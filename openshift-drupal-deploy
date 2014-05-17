@@ -1,0 +1,39 @@
+#!/bin/bash
+# This deploy hook gets executed after dependencies are resolved and the
+# build hook has been run but before the application has been started back
+# up again. This script gets executed directly, so it could be python, php,
+# ruby, etc.
+
+## Drupal specific deploy script
+## Drupal 7 or 8.
+
+#Let's create the drupal files directory in the Openshift data folder ($OPENSHIFT_DATA_DIR).
+
+echo "check for files directory, if not created - create it"
+
+if [ ! -d $OPENSHIFT_DATA_DIR/sites/default/files ]; then
+mkdir -p $OPENSHIFT_DATA_DIR/sites/default/files
+fi
+
+echo "done creating directories"
+
+####
+
+echo "Now chmod 777 -R sites just for good measure."
+chmod -R 777 $OPENSHIFT_DATA_DIR/sites
+echo "chmod done"
+
+####
+
+## Note the "php" directory below seems to be the best way to serve OpenShift files.
+## This is good as that allows us for dreictories one level above such as tmp and private
+
+## Symlink our persistent data (files) folder to the repo.
+
+echo "create sym links for writeable directories"
+
+ln -sf $OPENSHIFT_DATA_DIR/sites/default/files $OPENSHIFT_REPO_DIR/php/sites/default
+
+echo "sym links created! W00t! Now visit your website."
+
+####
