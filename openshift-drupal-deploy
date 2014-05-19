@@ -38,6 +38,27 @@ echo "create sym links for writeable directories"
 
 ln -sf $OPENSHIFT_DATA_DIR/sites/default/files $OPENSHIFT_REPO_DIR/php/sites/default
 
-echo "sym links created! W00t! Now visit your website."
+echo "files sym links created! W00t!"
+
+####
+
+# Copy default.settings.php from the repo, rename it and place it in the data directory.
+if [ ! -d $OPENSHIFT_DATA_DIR/sites/default/settings.php ];
+
+then
+
+cp $OPENSHIFT_REPO_DIR/php/sites/default/default.settings.php $OPENSHIFT_DATA_DIR/sites/default/settings.php
+
+else
+
+echo "Looks like the settings.php file is already there, we won't overwrite it."
+
+fi
+
+####
+
+echo "default.settings.php copied"
+
+ln -sf $OPENSHIFT_DATA_DIR/sites/default/settings.php $OPENSHIFT_REPO_DIR/php/sites/default/settings.php
 
 ####
