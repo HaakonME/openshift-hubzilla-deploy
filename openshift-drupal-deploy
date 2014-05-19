@@ -15,8 +15,8 @@
 
 echo "check for files directory, if not created - create it"
 
-if [ ! -d $OPENSHIFT_DATA_DIR/sites/default/files ]; then
-mkdir -p $OPENSHIFT_DATA_DIR/sites/default/files
+if [ ! -d ${OPENSHIFT_DATA_DIR}sites/default/files ]; then
+mkdir -p ${OPENSHIFT_DATA_DIR}sites/default/files
 fi
 
 echo "done creating directories"
@@ -24,7 +24,7 @@ echo "done creating directories"
 ####
 
 echo "Now chmod 777 -R files for good measure."
-chmod -R 777 $OPENSHIFT_DATA_DIR/sites/default/files
+chmod -R 777 ${OPENSHIFT_DATA_DIR}sites/default/files
 echo "chmod done"
 
 ####
@@ -36,18 +36,20 @@ echo "chmod done"
 
 echo "create sym links for writeable directories"
 
-ln -sf $OPENSHIFT_DATA_DIR/sites/default/files $OPENSHIFT_REPO_DIR/php/sites/default
+ln -sf ${OPENSHIFT_DATA_DIR}sites/default/files ${OPENSHIFT_REPO_DIR}php/sites/default
 
 echo "files sym links created! W00t!"
 
 ####
 
 # Copy default.settings.php from the repo, rename it and place it in the data directory.
-if [ ! -d $OPENSHIFT_DATA_DIR/sites/default/settings.php ];
+if [ ! -d ${OPENSHIFT_DATA_DIR}sites/default/settings.php ];
 
 then
 
-cp $OPENSHIFT_REPO_DIR/php/sites/default/default.settings.php $OPENSHIFT_DATA_DIR/sites/default/settings.php
+cp {OPENSHIFT_REPO_DIR}php/sites/default/default.settings.php ${OPENSHIFT_DATA_DIR}sites/default/settings.php
+
+echo "default.settings.php copied"
 
 else
 
@@ -57,8 +59,6 @@ fi
 
 ####
 
-echo "default.settings.php copied"
-
-ln -sf $OPENSHIFT_DATA_DIR/sites/default/settings.php $OPENSHIFT_REPO_DIR/php/sites/default/settings.php
+ln -sf ${OPENSHIFT_DATA_DIR}sites/default/settings.php ${OPENSHIFT_REPO_DIR}php/sites/default/settings.php
 
 ####
