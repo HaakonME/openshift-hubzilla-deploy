@@ -4,6 +4,8 @@
 # up again. This script gets executed directly, so it could be python, php,
 # ruby, etc.
 
+## Tutorial: http://www.panix.com/~elflord/unix/bash-tute.html
+
 ## Place this file in /.openshift/action_hooks/ (The .openshift folder will be in the root of your repo)
 ## The file name should be "deploy" such that you have:
 ##      .openshift/action_hooks/deploy
@@ -38,18 +40,18 @@ echo "create sym links for writeable directories"
 
 ln -sf ${OPENSHIFT_DATA_DIR}sites/default/files ${OPENSHIFT_REPO_DIR}php/sites/default
 
-echo "files sym links created! W00t!"
+echo "files sym links created!"
 
 ####
 
 # Copy default.settings.php from the repo, rename it and place it in the data directory.
-if [ ! -d ${OPENSHIFT_DATA_DIR}sites/default/settings.php ];
+if [ ! -f ${OPENSHIFT_DATA_DIR}sites/default/settings.php ];
 
 then
 
 cp {OPENSHIFT_REPO_DIR}php/sites/default/default.settings.php ${OPENSHIFT_DATA_DIR}sites/default/settings.php
 
-echo "default.settings.php copied"
+echo "default.settings.php copied."
 
 else
 
@@ -59,6 +61,10 @@ fi
 
 ####
 
+echo "create sym link for settings.php"
+
 ln -sf ${OPENSHIFT_DATA_DIR}sites/default/settings.php ${OPENSHIFT_REPO_DIR}php/sites/default/settings.php
+
+echo "settings.php symlink created."
 
 ####
