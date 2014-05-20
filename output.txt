@@ -1,4 +1,4 @@
-## sample output from above
+## sample output from above on git push
 
 Pushing to ssh://[app_id]@apptest-exampple.rhcloud.com/~/git/apptest.git/
 Counting objects: 9, done.
