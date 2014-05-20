@@ -53,7 +53,8 @@ echo "files sym links created!"
 
 ####
 
-# Copy default.settings.php from the repo, rename it and place it in the data directory. if it's there already, skip it.
+# Copy default.settings.php from the repo, rename it and place it in the data directory.
+# if it's there already, skip it.
 
 if [ ! -f ${OPENSHIFT_DATA_DIR}sites/default/settings.php ];
 
