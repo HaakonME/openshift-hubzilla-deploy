@@ -3,22 +3,24 @@
 # build hook has been run but before the application has been started back
 # up again. This script gets executed directly, so it could be python, php,
 # ruby, etc.
-## Bash help: http://www.panix.com/~elflord/unix/bash-tute.html
+# Bash help: http://www.panix.com/~elflord/unix/bash-tute.html
 
 ####
 
-## Drupal specific deploy script (Drupal 6, 7 or 8)
+# Drupal specific deploy script (Drupal 6, 7 or 8)
 
-## Place this file in /.openshift/action_hooks/ (The .openshift folder will be in the root of your repo)
-## The file name should be "deploy" such that you have:
-##      .openshift/action_hooks/deploy
+# Place this file in /.openshift/action_hooks/ (The .openshift folder will be in the root of your repo)
+# The file name should be "deploy" such that you have:
+#     .openshift/action_hooks/deploy
 
-## Conventions: Vars in cirely braces have the slash after implied so no need to add it.  e.g. {OPENSHIFT_DATA_DIR}php/foobar
-## See all OpenShift vars here: https://www.openshift.com/developers/openshift-environment-variables
+# Conventions: Vars in curley braces have the slash after implied so no need to add it.
+# e.g. {OPENSHIFT_DATA_DIR}php/foobar
+# See all OpenShift vars here:
+#     https://www.openshift.com/developers/openshift-environment-variables
 
 ####
 
-##Let's create the drupal files directory in the Openshift data folder ($OPENSHIFT_DATA_DIR).
+# Let's create the drupal files directory in the Openshift data folder ($OPENSHIFT_DATA_DIR).
 
 echo "check for files directory, if not created - create it"
 
@@ -30,7 +32,7 @@ echo "Done creating directories"
 
 ####
 
-## Set permissions on the files directory.
+# Set permissions on the files directory.
 
 echo "Now chmod 777 -R files."
 chmod -R 777 ${OPENSHIFT_DATA_DIR}sites/default/files
@@ -38,10 +40,10 @@ echo "chmod done"
 
 ####
 
-## Symlink our files folder to the repo.
+# Symlink our files folder to the repo.
 
-## Note the "php" directory below seems to be the best way to serve OpenShift files.
-## This is good as that allows us for directories one level above such as tmp and private
+# Note the "php" directory below seems to be the best way to serve OpenShift files.
+# This is good as that allows us for directories one level above such as tmp and private
 
 echo "create sym links for writeable directories"
 
@@ -51,7 +53,7 @@ echo "files sym links created!"
 
 ####
 
-## Copy default.settings.php from the repo, rename it and place it in the data directory. if it's there already, skip it.
+# Copy default.settings.php from the repo, rename it and place it in the data directory. if it's there already, skip it.
 
 if [ ! -f ${OPENSHIFT_DATA_DIR}sites/default/settings.php ];
 
@@ -69,7 +71,7 @@ fi
 
 ####
 
-## symlink the settings.php file.
+# symlink the settings.php file.
 
 echo "create sym link for settings.php"
 
