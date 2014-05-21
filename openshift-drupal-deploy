@@ -3,7 +3,11 @@
 # build hook has been run but before the application has been started back
 # up again. This script gets executed directly, so it could be python, php,
 # ruby, etc.
+
 # Bash help: http://www.panix.com/~elflord/unix/bash-tute.html
+
+# For information about action hooks supported by OpenShift, consult the documentation:
+# http://openshift.github.io/documentation/oo_user_guide.html#the-openshift-directory
 
 ####
 
@@ -14,29 +18,40 @@
 #     .openshift/action_hooks/deploy
 
 # Conventions: Vars in curley braces have the slash after implied so no need to add it.
-# e.g. {OPENSHIFT_DATA_DIR}php/foobar
+# e.g. ${OPENSHIFT_REPO_DIR}php/foobar = /repo/php/foobar
 # See all OpenShift vars here:
 #     https://www.openshift.com/developers/openshift-environment-variables
 
 ####
 
+# Start Deploy
+
+echo "Starting Deploy..."
+
 # Let's create the drupal files directory in the Openshift data folder ($OPENSHIFT_DATA_DIR).
 
-echo "check for files directory, if not created - create it"
+echo "Check for the files directory, if not created - create it"
 
 if [ ! -d ${OPENSHIFT_DATA_DIR}sites/default/files ]; then
 mkdir -p ${OPENSHIFT_DATA_DIR}sites/default/files
-fi
 
-echo "Done creating directories"
+echo "Done creating files directory"
+
+else
+
+echo "The files directory already exists"
+
+fi
 
 ####
 
 # Set permissions on the files directory.
 
-echo "Now chmod 777 -R files."
+echo "Now chmod 777 -R files"
+
 chmod -R 777 ${OPENSHIFT_DATA_DIR}sites/default/files
-echo "chmod done"
+
+echo "chmod done, permissions set to 777"
 
 ####
 
@@ -45,11 +60,11 @@ echo "chmod done"
 # Note the "php" directory below seems to be the best way to serve OpenShift files.
 # This is good as that allows us for directories one level above such as tmp and private
 
-echo "create sym links for writeable directories"
+echo "Create sym links for writeable directories"
 
 ln -sf ${OPENSHIFT_DATA_DIR}sites/default/files ${OPENSHIFT_REPO_DIR}php/sites/default
 
-echo "files sym links created!"
+echo "Files sym links created"
 
 ####
 
@@ -60,7 +75,7 @@ if [ ! -f ${OPENSHIFT_DATA_DIR}sites/default/settings.php ];
 
 then
 
-cp {OPENSHIFT_REPO_DIR}php/sites/default/default.settings.php ${OPENSHIFT_DATA_DIR}sites/default/settings.php
+cp ${OPENSHIFT_REPO_DIR}php/sites/default/default.settings.php ${OPENSHIFT_DATA_DIR}sites/default/settings.php
 
 echo "default.settings.php copied."
 
@@ -74,10 +89,10 @@ fi
 
 # symlink the settings.php file.
 
-echo "create sym link for settings.php"
+echo "Create sym link for settings.php"
 
 ln -sf ${OPENSHIFT_DATA_DIR}sites/default/settings.php ${OPENSHIFT_REPO_DIR}php/sites/default/settings.php
 
-echo "settings.php symlink created."
+echo "settings.php symlink created"
 
 ####
