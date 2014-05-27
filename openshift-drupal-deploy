@@ -15,12 +15,12 @@
 
 # Place this file in /.openshift/action_hooks/ (The .openshift folder will be in the root of your repo)
 # The file name should be "deploy" such that you have:
-#     .openshift/action_hooks/deploy
+# .openshift/action_hooks/deploy
 
 # Conventions: Vars in curley braces have the slash after implied so no need to add it.
 # e.g. ${OPENSHIFT_REPO_DIR}php/foobar = /repo/php/foobar
 # See all OpenShift vars here:
-#     https://www.openshift.com/developers/openshift-environment-variables
+# https://www.openshift.com/developers/openshift-environment-variables
 
 ####
 
@@ -96,3 +96,4 @@ ln -sf ${OPENSHIFT_DATA_DIR}sites/default/settings.php ${OPENSHIFT_REPO_DIR}php/
 echo "settings.php symlink created"
 
 ####
+
