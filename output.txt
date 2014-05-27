@@ -1,6 +1,6 @@
 ## sample output from above on git push
 
-Pushing to ssh://[app_id]@apptest-exampple.rhcloud.com/~/git/apptest.git/
+Pushing to ssh://[app_id]@apptest-example.rhcloud.com/~/git/apptest.git/
 Counting objects: 9, done.
 Delta compression using up to 8 threads.
 Compressing objects: 100% (5/5), done.
@@ -32,6 +32,6 @@ remote: -------------------------
 remote: Git Post-Receive Result: success        
 remote: Activation status: success        
 remote: Deployment completed with status: success        
-To to ssh://[app_id]@apptest-exampple.rhcloud.com/~/git/apptest.git/
+To to ssh://[app_id]@apptest-example.rhcloud.com/~/git/apptest.git/
    f9428f0..0d85512  master -> master
 updating local tracking ref 'refs/remotes/origin/master'
